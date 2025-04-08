@@ -1,91 +1,266 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <!-- Meta tags e links de estilos (mantidos iguais) -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <title>Tropicália</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+        
+        /* Estilos para o menu de acessibilidade */
+        .menu-acessibilidade {
+            position: fixed;
+            top: 2rem;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .rotacao-botao {
+            transform: rotate(-90deg);
+            transform-origin: right center;
+            transition: transform 0.3s ease;
+        }
+        
+        .opcoes-acessibilidade {
+            margin-top: 10px;
+            display: none;
+            flex-direction: column;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .mostrar-opcoes {
+            display: flex !important;
+        }
+        
+        .opcoes-acessibilidade button {
+            margin-bottom: 5px;
+            width: 100%;
+        }
+        
+        /* Classes para tamanhos de fonte */
+        .fonte-pequena { font-size: 14px !important; }
+        .fonte-media { font-size: 16px !important; }
+        .fonte-grande { font-size: 18px !important; }
+        .fonte-muito-grande { font-size: 20px !important; }
+        
+        /* Modo alto contraste */
+        .alto-contraste {
+            background-color: #fff !important;
+            color: #000 !important;
+        }
+        .alto-contraste .text-white {
+            color: #000 !important;
+        }
+        .alto-contraste .formulario {
+            background-color: #fff !important;
+            border: 2px solid #000 !important;
+        }
+        
+        /* Estilos específicos para o conteúdo */
+        .inicio-fundo {
+            background-color: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        
+        .secao-tropicalia {
+            background-color: #f1f8ff;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        
+        .fundo-galeria {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .formulario {
+            background-color: #f8f9fa;
+            padding: 2rem;
+        }
+        
+        .img-inicio {
+            max-width: 400px;
+            border-radius: 10px;
+        }
+    </style>
 </head>
+
 <body>
     <header class="p-5">
         <nav class="container d-flex justify-content-between align-items-center">
-            <!-- Logo com acessibilidade -->
-            <img src="img/logo.png" 
-                 alt="Logotipo do movimento Tropicália com formas abstratas coloridas" 
-                 title="Logo Tropicália - CC BY-NC 4.0" 
-                 class="nav-img" 
-                 loading="lazy">
-            <!-- Menu (mantido igual) -->
+            <img src="img/logo.png" alt="Logo Tropicália" class="nav-img" loading="lazy" style="max-height: 60px;">
+            <ul class="nav mt-5">
+                <li class="nav-item"><a class="nav-link" href="#inicio">Início</a></li>
+                <li class="nav-item"><a class="nav-link" href="#galeria">Galeria</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+            </ul>
+
+            <div id="acessibilidade" class="menu-acessibilidade">
+                <button id="botao-acessibilidade" class="btn btn-primary fw-bold rotacao-botao">Acessibilidade</button>
+                <div id="opcoes-acessibilidade" class="opcoes-acessibilidade">
+                    <button id="diminuir-fonte" class="btn btn-primary fw-bold">Diminuir Fonte (A-)</button>
+                    <button id="aumentar-fonte" class="btn btn-primary fw-bold">Aumentar Fonte (A+)</button>
+                    <button id="mudar-cor" class="btn btn-warning fw-bold">Alto Contraste</button>
+                </div>
+            </div>
         </nav>
     </header>
 
     <main class="container my-5">
-        <!-- Seção Início com imagem dos Mutantes -->
         <section id="inicio" class="my-5">
             <div class="inicio-fundo d-flex justify-content-between align-items-center">
                 <div class="esquerda-conteudo">
-                    <!-- Conteúdo mantido -->
+                    <h1 class="display-4 text-primary fst-italic fw-bold">Boas-vindas a</h1>
+                    <img src="img/logo-2.png" alt="Logo Tropicália" class="mb-3" style="max-width: 100%; height: auto;" loading="lazy">
+                    <a href="#tropicalia" class="btn btn-primary btn-lg botao-inicio fw-semibold">Quero conhecer!</a>
                 </div>
-                <!-- Imagem com descrição aprimorada -->
-                <img src="img/os-mutantes-1968.jpg"
-                     alt="Os Mutantes em show histórico: Rita Lee ao centro com vestido psicodélico, Arnaldo Baptista (esquerda) e Sérgio Dias (direita) tocando guitarra e baixo"
-                     title="Os Mutantes - CC BY-SA 4.0 / Acervo Digital"
-                     class="img-fluid img-inicio"
-                     loading="lazy">
+                <img src="img/lossy-page1-640px-Os_Mutantes.tif" alt="Grupo musical Os Mutantes cantando em dois microfones" class="img-fluid img-inicio">
             </div>
         </section>
 
-        <!-- Seção Tropicália com guitarra -->
-        <section id="tropicalia" class="my-5 pt-6 secao-tropicalia">
-            <div class="container d-flex align-items-center">
-                <div class="col-4 d-flex justify-content-center">
-                    <img src="img/guitarra-tropicalia.jpg"
-                         alt="Guitarra elétrica vintage modelo Gibson, usada em shows do movimento tropicalista"
-                         title="Guitarra - Domínio Público / Museu da Música"
-                         class="rounded-pill"
-                         width="273"
-                         height="331"
-                         loading="lazy">
+        <section id="tropicalia" class="my-5 pt-5 secao-tropicalia">
+            <div class="container d-flex flex-column flex-md-row align-items-center">
+                <div class="col-md-4 d-flex justify-content-center mb-4 mb-md-0">
+                    <img src="img/image.png" alt="Artista tropicalista" class="rounded-pill img-fluid" style="max-width: 273px; height: auto;" loading="lazy">
                 </div>
-                <!-- Texto com fonte formatada -->
-                <div class="col-5">
-                    <h2>O que foi a Tropicália?</h2>
-                    <p class="p-2">A Tropicália... <!-- texto mantido -->
-                        <br><small class="text-muted">Fonte: TodaMatéria (adaptado)</small>
-                    </p>
+                <div class="col-md-8">
+                    <h2 class="mb-4">O que foi a Tropicália?</h2>
+                    <p class="mb-3">A Tropicália foi um dos movimentos mais explosivos da cultura brasileira, surgido no final dos anos 1960. Mais que um estilo musical, foi uma revolução criativa que:</p>
+                    <ul class="mb-3">
+                        <li class="mb-2">Misturou tradição brasileira e vanguarda internacional</li>
+                        <li class="mb-2">Uniu samba, bossa nova, rock psicodélico e pop</li>
+                        <li class="mb-2">Questionou convenções sociais e artísticas</li>
+                        <li class="mb-2">Criou uma estética visual marcante e provocativa</li>
+                    </ul>
+                    <p>Liderada por artistas como Caetano Veloso, Gilberto Gil e Os Mutantes, a Tropicália deixou um legado permanente na música e cultura do Brasil.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Galeria com acessibilidade completa -->
-        <section id="galeria">
-            <h2 class="text-center pt-5">Galeria</h2>
+        <section id="galeria" class="my-5">
+            <h2 class="text-center pt-5 mb-4">Galeria</h2>
             <div class="container p-3 mt-3 fundo-galeria">
-                <div class="row justify-content-md-center">
-                    <!-- Imagem 1 - Jorge Ben -->
-                    <div class="col-md-4">
-                        <img src="img/jorge-ben-1971.jpg"
-                             alt="Jorge Ben Jor se apresentando com Trio Mocotó em 1971: cantor de terno branco tocando violão"
-                             title="Jorge Ben - CC BY 2.0 / Arquivo Nacional"
-                             class="img-fluid rounded-5"
-                             loading="lazy">
+                <div class="row justify-content-center g-4">
+                    <div class="col-md-6 col-lg-4">
+                        <img src="img/jorge-ben.jpg" alt="Jorge Ben e o Trio Mocotó no Teatro da Lagoa, 1971" class="img-fluid rounded-5 w-100" loading="lazy">
                     </div>
-                    <!-- Imagem 2 - Mutantes -->
-                    <div class="col-md-4">
-                        <img src="img/os-mutantes-show.jpg"
-                             alt="Os Mutantes em performance no III Festival da MPB: Rita Lee cantando, Sérgio Dias com óculos escuros"
-                             title="Mutantes - Domínio Público / TV Cultura"
-                             class="img-fluid rounded-5"
-                             loading="lazy">
+                    <div class="col-md-6 col-lg-4">
+                        <img src="img/os-mutantes.jpg" alt="Os Mutantes em show" class="img-fluid rounded-5 w-100" loading="lazy">
                     </div>
-                </div>
-                <!-- Segunda linha da galeria (Gil e Caetano) -->
-                <div class="row mt-4 justify-content-md-center">
-                    <!-- Adicione aqui as outras imagens com o mesmo padrão -->
+                    <div class="col-md-6 col-lg-4">
+                        <img src="img/gilberto-gil.jpg" alt="Gilberto Gil nos anos 1960" class="img-fluid rounded-5 w-100" loading="lazy">
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <img src="img/caetano-veloso.jpg" alt="Caetano Veloso no III Festival da Música Popular" class="img-fluid rounded-5 w-100" loading="lazy">
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Seção Contato (mantida igual) -->
+        <section id="contato" class="my-5">
+            <div class="container p-5 d-flex justify-content-center">
+                <div class="col-md-10 col-lg-8 rounded-5 formulario">
+                    <h2 class="mb-4 text-center">Entre em contato</h2>
+                    <form>
+                        <div class="form-group mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" id="nome" name="nome" class="form-control rounded-3" placeholder="Digite seu nome completo">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-control rounded-3" placeholder="Digite seu email">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="mensagem" class="form-label">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" class="form-control rounded-4" rows="4" placeholder="Escreva sua mensagem"></textarea>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg rounded-pill">Enviar mensagem</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer e scripts (mantidos iguais) -->
+    <footer class="text-center p-4 bg-light mt-5">
+        <p class="mb-3">Acesse nossas redes:</p>
+        <div class="mb-3">
+            <a href="#" class="text-decoration-none mx-2"><i class="bi bi-whatsapp fs-4"></i></a>
+            <a href="#" class="text-decoration-none mx-2"><i class="bi bi-instagram fs-4"></i></a>
+            <a href="#" class="text-decoration-none mx-2"><i class="bi bi-tiktok fs-4"></i></a>
+        </div>
+        <p class="mt-3">Desenvolvido por Start by Alura. Projeto fictício sem fins comerciais.</p>
+    </footer>
+    
+    <script>
+        // Menu de acessibilidade
+        document.addEventListener('DOMContentLoaded', function() {
+            const botaoAcessibilidade = document.getElementById('botao-acessibilidade');
+            const opcoesAcessibilidade = document.getElementById('opcoes-acessibilidade');
+            
+            botaoAcessibilidade.addEventListener('click', function() {
+                this.classList.toggle('rotacao-botao');
+                opcoesAcessibilidade.classList.toggle('mostrar-opcoes');
+            });
+            
+            // Controle de tamanho de fonte
+            const aumentarFonte = document.getElementById('aumentar-fonte');
+            const diminuirFonte = document.getElementById('diminuir-fonte');
+            const body = document.body;
+            let tamanhoFonte = 2; // Nível médio (0=pequena, 1=média, 2=grande, 3=muito grande)
+            
+            const classesFonte = ['fonte-pequena', 'fonte-media', 'fonte-grande', 'fonte-muito-grande'];
+            body.classList.add(classesFonte[2]);
+            
+            aumentarFonte.addEventListener('click', () => {
+                if (tamanhoFonte < 3) {
+                    body.classList.remove(classesFonte[tamanhoFonte]);
+                    tamanhoFonte++;
+                    body.classList.add(classesFonte[tamanhoFonte]);
+                }
+            });
+            
+            diminuirFonte.addEventListener('click', () => {
+                if (tamanhoFonte > 0) {
+                    body.classList.remove(classesFonte[tamanhoFonte]);
+                    tamanhoFonte--;
+                    body.classList.add(classesFonte[tamanhoFonte]);
+                }
+            });
+            
+            // Controle de alto contraste
+            const botaoContraste = document.getElementById('mudar-cor');
+            botaoContraste.addEventListener('click', function() {
+                document.body.classList.toggle('alto-contraste');
+                this.textContent = document.body.classList.contains('alto-contraste') 
+                    ? 'Cores Originais' 
+                    : 'Alto Contraste';
+                
+                // Altera a classe do botão para feedback visual
+                if (document.body.classList.contains('alto-contraste')) {
+                    this.classList.remove('btn-warning');
+                    this.classList.add('btn-dark');
+                } else {
+                    this.classList.remove('btn-dark');
+                    this.classList.add('btn-warning');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
