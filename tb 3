@@ -11,13 +11,20 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
     <style>
+        :root {
+            --alto-contraste-fundo: #000000;
+            --alto-contraste-texto: #ffffff;
+            --alto-contraste-link: #ffd700;
+            --alto-contraste-borda: #ffd700;
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             transition: all 0.3s ease;
             font-size: 16px;
         }
         
-        /* Estilos para o menu de acessibilidade */
+        /* Menu de Acessibilidade */
         .menu-acessibilidade {
             position: fixed;
             top: 2rem;
@@ -50,81 +57,59 @@
             transform: translateY(0);
         }
         
-        .opcoes-acessibilidade button {
-            margin-bottom: 5px;
-            width: 100%;
-        }
-        
-        /* Classes para tamanhos de fonte */
+        /* Tamanhos de Fonte */
         .fonte-pequena { font-size: 14px !important; }
         .fonte-media { font-size: 16px !important; }
         .fonte-grande { font-size: 18px !important; }
         .fonte-muito-grande { font-size: 20px !important; }
         
-        /* Modo alto contraste */
+        /* Alto Contraste */
         .alto-contraste {
-            background-color: #fff !important;
-            color: #000 !important;
+            background-color: var(--alto-contraste-fundo) !important;
+            color: var(--alto-contraste-texto) !important;
         }
-        .alto-contraste .text-white {
-            color: #000 !important;
-        }
+        .alto-contraste header,
+        .alto-contraste footer,
         .alto-contraste .formulario {
-            background-color: #fff !important;
-            border: 2px solid #000 !important;
+            background-color: var(--alto-contraste-fundo) !important;
+            color: var(--alto-contraste-texto) !important;
+        }
+        .alto-contraste .nav-link {
+            color: var(--alto-contraste-link) !important;
         }
         
-        /* Estilo para botões desabilitados */
-        .btn-secondary {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-        
-        /* Foco visível para acessibilidade */
-        button:focus, input:focus, textarea:focus {
-            outline: 2px solid #0d6efd;
+        /* Navegação por Teclado */
+        :focus-visible {
+            outline: 3px solid #0d6efd;
             outline-offset: 2px;
         }
-        
-        /* Melhorar legibilidade no alto contraste */
-        .alto-contraste button:focus,
-        .alto-contraste input:focus,
-        .alto-contraste textarea:focus {
-            outline: 2px solid #000;
-            outline-offset: 2px;
+        .alto-contraste :focus-visible {
+            outline: 3px solid var(--alto-contraste-link) !important;
         }
-        
-        /* Estilos específicos para o conteúdo */
-        .inicio-fundo {
-            background-color: #f8f9fa;
-            padding: 2rem;
-            border-radius: 10px;
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            z-index: 9999;
+            padding: 1em;
+            background: #fff;
+            color: #000;
         }
-        
-        .secao-tropicalia {
-            background-color: #f1f8ff;
-            padding: 2rem;
-            border-radius: 10px;
+        .skip-link:focus {
+            left: 0;
         }
-        
-        .fundo-galeria {
-            background-color: #f8f9fa;
-            border-radius: 10px;
-        }
-        
-        .formulario {
-            background-color: #f8f9fa;
-            padding: 2rem;
-        }
-        
-        .img-inicio {
-            max-width: 400px;
-            border-radius: 10px;
+
+        /* Estilos para ScrollReveal */
+        .reveal {
+            visibility: hidden;
         }
     </style>
 </head>
 
 <body>
+    <!-- Link para pular navegação -->
+    <a href="#main-content" class="skip-link">Ir para o conteúdo principal</a>
+
     <header class="p-5">
         <nav class="container d-flex justify-content-between align-items-center">
             <img src="img/logo.png" alt="Logo Tropicália" class="nav-img" loading="lazy" style="max-height: 60px;">
@@ -142,19 +127,19 @@
                         aria-label="Menu de Acessibilidade">
                     <i class="bi bi-universal-access me-2"></i>Acessibilidade
                 </button>
-                <div id="opcoes-acessibilidade" 
-                     class="opcoes-acessibilidade"
-                     aria-hidden="true">
-                    <button id="diminuir-fonte" class="btn btn-primary fw-bold">Diminuir Fonte (A-)</button>
-                    <button id="aumentar-fonte" class="btn btn-primary fw-bold">Aumentar Fonte (A+)</button>
-                    <button id="mudar-cor" class="btn btn-warning fw-bold">Alto Contraste</button>
+                <div id="opcoes-acessibilidade" class="opcoes-acessibilidade" aria-hidden="true">
+                    <button id="aumentar-fonte" class="btn btn-primary fw-bold" aria-label="Aumentar fonte">A+</button>
+                    <button id="diminuir-fonte" class="btn btn-primary fw-bold" aria-label="Diminuir fonte">A-</button>
+                    <button id="alterna-contraste" class="btn btn-warning fw-bold" aria-label="Alto contraste">
+                        <i class="bi bi-shadows me-2"></i>Contraste
+                    </button>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main class="container my-5">
-        <section id="inicio" class="my-5">
+    <main id="main-content" class="container my-5">
+        <section id="inicio" class="my-5 reveal" tabindex="0" aria-label="Seção de boas-vindas">
             <div class="inicio-fundo d-flex justify-content-between align-items-center">
                 <div class="esquerda-conteudo">
                     <h1 class="display-4 text-primary fst-italic fw-bold">Boas-vindas a</h1>
@@ -165,7 +150,7 @@
             </div>
         </section>
 
-        <section id="tropicalia" class="my-5 pt-5 secao-tropicalia">
+        <section id="tropicalia" class="my-5 pt-5 secao-tropicalia reveal" tabindex="0" aria-label="Seção sobre o movimento Tropicália">
             <div class="container d-flex flex-column flex-md-row align-items-center">
                 <div class="col-md-4 d-flex justify-content-center mb-4 mb-md-0">
                     <img src="img/image.png" alt="Artista tropicalista" class="rounded-pill img-fluid" style="max-width: 273px; height: auto;" loading="lazy">
@@ -184,44 +169,44 @@
             </div>
         </section>
 
-        <section id="galeria" class="my-5">
+        <section id="galeria" class="my-5 reveal" tabindex="0" aria-label="Seção de galeria de imagens">
             <h2 class="text-center pt-5 mb-4">Galeria</h2>
             <div class="container p-3 mt-3 fundo-galeria">
                 <div class="row justify-content-center g-4">
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-md-6 col-lg-4 reveal">
                         <img src="img/jorge-ben.jpg" alt="Jorge Ben e o Trio Mocotó no Teatro da Lagoa, 1971" class="img-fluid rounded-5 w-100" loading="lazy">
                     </div>
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-md-6 col-lg-4 reveal">
                         <img src="img/os-mutantes.jpg" alt="Os Mutantes em show" class="img-fluid rounded-5 w-100" loading="lazy">
                     </div>
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-md-6 col-lg-4 reveal">
                         <img src="img/gilberto-gil.jpg" alt="Gilberto Gil nos anos 1960" class="img-fluid rounded-5 w-100" loading="lazy">
                     </div>
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-md-6 col-lg-4 reveal">
                         <img src="img/caetano-veloso.jpg" alt="Caetano Veloso no III Festival da Música Popular" class="img-fluid rounded-5 w-100" loading="lazy">
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contato" class="my-5">
+        <section id="contato" class="my-5 reveal" tabindex="0" aria-label="Seção de formulário de contato">
             <div class="container p-5 d-flex justify-content-center">
                 <div class="col-md-10 col-lg-8 rounded-5 formulario">
                     <h2 class="mb-4 text-center">Entre em contato</h2>
-                    <form>
-                        <div class="form-group mb-3">
+                    <form aria-label="Formulário de contato">
+                        <div class="form-group mb-3 reveal">
                             <label for="nome" class="form-label">Nome</label>
                             <input type="text" id="nome" name="nome" class="form-control rounded-3" placeholder="Digite seu nome completo">
                         </div>
-                        <div class="form-group mb-3">
+                        <div class="form-group mb-3 reveal">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" id="email" name="email" class="form-control rounded-3" placeholder="Digite seu email">
                         </div>
-                        <div class="form-group mb-4">
+                        <div class="form-group mb-4 reveal">
                             <label for="mensagem" class="form-label">Mensagem</label>
                             <textarea id="mensagem" name="mensagem" class="form-control rounded-4" rows="4" placeholder="Escreva sua mensagem"></textarea>
                         </div>
-                        <div class="d-grid">
+                        <div class="d-grid reveal">
                             <button type="submit" class="btn btn-primary btn-lg rounded-pill">Enviar mensagem</button>
                         </div>
                     </form>
@@ -230,23 +215,25 @@
         </section>
     </main>
 
-    <footer class="text-center p-4 bg-light mt-5">
+    <footer class="text-center p-4 bg-light mt-5" tabindex="0" aria-label="Rodapé do site">
         <p class="mb-3">Acesse nossas redes:</p>
         <div class="mb-3">
-            <a href="#" class="text-decoration-none mx-2"><i class="bi bi-whatsapp fs-4"></i></a>
-            <a href="#" class="text-decoration-none mx-2"><i class="bi bi-instagram fs-4"></i></a>
-            <a href="#" class="text-decoration-none mx-2"><i class="bi bi-tiktok fs-4"></i></a>
+            <a href="#" class="text-decoration-none mx-2" aria-label="WhatsApp"><i class="bi bi-whatsapp fs-4"></i></a>
+            <a href="#" class="text-decoration-none mx-2" aria-label="Instagram"><i class="bi bi-instagram fs-4"></i></a>
+            <a href="#" class="text-decoration-none mx-2" aria-label="TikTok"><i class="bi bi-tiktok fs-4"></i></a>
         </div>
         <p class="mt-3">Desenvolvido por Start by Alura. Projeto fictício sem fins comerciais.</p>
     </footer>
     
+    <!-- ScrollReveal Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.min.js"></script>
+    
     <script>
-        // Menu de acessibilidade
         document.addEventListener('DOMContentLoaded', function() {
+            // Menu de Acessibilidade
             const botaoAcessibilidade = document.getElementById('botao-acessibilidade');
             const opcoesAcessibilidade = document.getElementById('opcoes-acessibilidade');
             
-            // Controle do menu de acessibilidade
             botaoAcessibilidade.addEventListener('click', function(e) {
                 e.stopPropagation();
                 const isExpanded = this.getAttribute('aria-expanded') === 'true';
@@ -254,6 +241,10 @@
                 opcoesAcessibilidade.setAttribute('aria-hidden', isExpanded);
                 this.classList.toggle('rotacao-botao');
                 opcoesAcessibilidade.classList.toggle('mostrar-opcoes');
+                
+                if (!isExpanded) {
+                    setTimeout(() => document.getElementById('aumentar-fonte').focus(), 100);
+                }
             });
             
             // Fechar menu ao clicar fora
@@ -273,37 +264,34 @@
                     botaoAcessibilidade.classList.remove('rotacao-botao');
                     botaoAcessibilidade.setAttribute('aria-expanded', 'false');
                     opcoesAcessibilidade.setAttribute('aria-hidden', 'true');
+                    botaoAcessibilidade.focus();
                 }
             });
             
-            // Controle de tamanho de fonte
+            // Controle de Tamanho de Fonte
             const aumentarFonte = document.getElementById('aumentar-fonte');
             const diminuirFonte = document.getElementById('diminuir-fonte');
             const body = document.body;
-            let tamanhoFonte = 2; // Nível médio (0=pequena, 1=média, 2=grande, 3=muito grande)
-            
+            let tamanhoFonte = 2;
             const classesFonte = ['fonte-pequena', 'fonte-media', 'fonte-grande', 'fonte-muito-grande'];
             
-            // Função para atualizar estado dos botões de fonte
             function atualizarEstadoBotoesFonte() {
                 aumentarFonte.disabled = tamanhoFonte >= 3;
                 diminuirFonte.disabled = tamanhoFonte <= 0;
                 
-                // Adicionar classe para indicar estado
                 aumentarFonte.classList.toggle('btn-secondary', tamanhoFonte >= 3);
                 aumentarFonte.classList.toggle('btn-primary', tamanhoFonte < 3);
                 diminuirFonte.classList.toggle('btn-secondary', tamanhoFonte <= 0);
                 diminuirFonte.classList.toggle('btn-primary', tamanhoFonte > 0);
             }
             
-            // Event listeners para os botões de fonte
             aumentarFonte.addEventListener('click', () => {
                 if (tamanhoFonte < 3) {
                     body.classList.remove(classesFonte[tamanhoFonte]);
                     tamanhoFonte++;
                     body.classList.add(classesFonte[tamanhoFonte]);
                     atualizarEstadoBotoesFonte();
-                    salvarPreferencias();
+                    localStorage.setItem('tamanhoFonte', tamanhoFonte);
                 }
             });
             
@@ -313,20 +301,21 @@
                     tamanhoFonte--;
                     body.classList.add(classesFonte[tamanhoFonte]);
                     atualizarEstadoBotoesFonte();
-                    salvarPreferencias();
+                    localStorage.setItem('tamanhoFonte', tamanhoFonte);
                 }
             });
             
-            // Controle de alto contraste
-            const botaoContraste = document.getElementById('mudar-cor');
+            // Controle de Alto Contraste
+            const botaoContraste = document.getElementById('alterna-contraste');
             botaoContraste.addEventListener('click', function() {
                 document.body.classList.toggle('alto-contraste');
-                this.textContent = document.body.classList.contains('alto-contraste') 
-                    ? 'Cores Originais' 
-                    : 'Alto Contraste';
+                const estaAltoContraste = document.body.classList.contains('alto-contraste');
                 
-                // Altera a classe do botão para feedback visual
-                if (document.body.classList.contains('alto-contraste')) {
+                this.innerHTML = estaAltoContraste 
+                    ? '<i class="bi bi-sun me-2"></i>Cores Originais' 
+                    : '<i class="bi bi-shadows me-2"></i>Contraste';
+                
+                if (estaAltoContraste) {
                     this.classList.remove('btn-warning');
                     this.classList.add('btn-dark');
                 } else {
@@ -334,18 +323,13 @@
                     this.classList.add('btn-warning');
                 }
                 
-                salvarPreferencias();
+                localStorage.setItem('altoContraste', estaAltoContraste);
             });
             
-            // Funções para salvar e carregar preferências
-            function salvarPreferencias() {
-                localStorage.setItem('tamanhoFonte', tamanhoFonte);
-                localStorage.setItem('altoContraste', document.body.classList.contains('alto-contraste'));
-            }
-            
+            // Carregar preferências salvas
             function carregarPreferencias() {
                 const tamanhoSalvo = localStorage.getItem('tamanhoFonte');
-                const contrasteSalvo = localStorage.getItem('altoContraste');
+                const contrasteSalvo = localStorage.getItem('altoContraste') === 'true';
                 
                 if (tamanhoSalvo !== null) {
                     tamanhoFonte = parseInt(tamanhoSalvo);
@@ -353,9 +337,9 @@
                     body.classList.add(classesFonte[tamanhoFonte]);
                 }
                 
-                if (contrasteSalvo === 'true') {
+                if (contrasteSalvo) {
                     document.body.classList.add('alto-contraste');
-                    botaoContraste.textContent = 'Cores Originais';
+                    botaoContraste.innerHTML = '<i class="bi bi-sun me-2"></i>Cores Originais';
                     botaoContraste.classList.remove('btn-warning');
                     botaoContraste.classList.add('btn-dark');
                 }
@@ -363,8 +347,18 @@
                 atualizarEstadoBotoesFonte();
             }
             
-            // Carregar preferências ao iniciar
             carregarPreferencias();
+            
+            // Configuração do ScrollReveal
+            ScrollReveal({
+                origin: 'bottom',
+                distance: '30px',
+                duration: 1000,
+                reset: true
+            }).reveal('.reveal', {
+                delay: 200,
+                interval: 100
+            });
         });
     </script>
 </body>
